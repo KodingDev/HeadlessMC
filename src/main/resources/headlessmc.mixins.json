@@ -1,0 +1,27 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.koding.headless.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinBakedModelManager",
+    "MixinCapabilityTracker",
+    "MixinFontStorage",
+    "MixinFramebuffer",
+    "MixinGlStateManager",
+    "MixinInputUtil",
+    "MixinKeyboard",
+    "MixinMinecraftClient",
+    "MixinMouse",
+    "MixinParticleManager",
+    "MixinProgram",
+    "MixinRenderSystem",
+    "MixinTextureUtil",
+    "MixinWindow",
+    "MixinWindowFramebuffer",
+    "MixinWorldRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

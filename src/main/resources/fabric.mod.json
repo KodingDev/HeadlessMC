@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "headlessmc",
+  "version": "${version}",
+  "name": "HeadlessMC",
+  "description": "Disables LWJGL and renders Minecraft in headless mode.",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "environment": "*",
+  "mixins": [
+    "headlessmc.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "minecraft": "1.18.1"
+  }
+}
