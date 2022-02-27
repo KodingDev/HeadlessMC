@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "MixinBakedModelManager",
+    "MixinBlockModels",
     "MixinCapabilityTracker",
     "MixinFontStorage",
     "MixinFramebuffer",
@@ -13,9 +14,9 @@
     "MixinKeyboard",
     "MixinMinecraftClient",
     "MixinMouse",
-    "MixinParticleManager",
     "MixinProgram",
     "MixinRenderSystem",
+    "MixinSoundManager",
     "MixinTextureUtil",
     "MixinWindow",
     "MixinWindowFramebuffer",

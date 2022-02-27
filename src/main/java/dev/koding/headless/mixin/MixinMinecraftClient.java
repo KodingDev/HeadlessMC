@@ -1,8 +1,5 @@
 package dev.koding.headless.mixin;
 
-import baritone.api.BaritoneAPI;
-import baritone.api.pathing.goals.GoalNear;
-import baritone.api.process.ICustomGoalProcess;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ConnectScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -10,9 +7,9 @@ import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.network.ServerAddress;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.resource.ReloadableResourceManager;
+import net.minecraft.resource.ResourceReloader;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.thread.ReentrantThreadExecutor;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -65,26 +62,8 @@ public abstract class MixinMinecraftClient extends ReentrantThreadExecutor<Runna
         ConnectScreen.connect(new TitleScreen(), client, address, new ServerInfo("Direct", address.getAddress() + ":" + address.getPort(), false));
     }
 
-    // TODO: Remove these
-    @Inject(method = "joinWorld", at = @At("RETURN"))
-    private void joinWorld(ClientWorld world, CallbackInfo ci) {
-        new Thread(() -> {
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("schmovin");
-
-            ICustomGoalProcess goal = BaritoneAPI.getProvider().getPrimaryBaritone().getCustomGoalProcess();
-            goal.setGoal(new GoalNear(new BlockPos(184, 71, -25), 1));
-            goal.path();
-        }).start();
-    }
-
-    @Inject(method = "setScreen", at = @At("HEAD"))
-    private void setScreen(Screen screen, CallbackInfo ci) {
-        System.out.println("Changing screen to " + screen);
+    @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/resource/ReloadableResourceManager;registerReloader(Lnet/minecraft/resource/ResourceReloader;)V"))
+    private void registerReloader(ReloadableResourceManager instance, ResourceReloader resourceReloader) {
     }
 
 }
